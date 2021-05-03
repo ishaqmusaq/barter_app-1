@@ -16,7 +16,8 @@ import {
 const initialState = {
   isAuthenticated: null,
   user: null,
-  account_balance: null,
+  account_balance: 0.0,
+  account_number:null,
   userEmail: null,
   userPhone: null,
   userRef: null,
@@ -51,6 +52,7 @@ export default (state = initialState, {type, payload}) => {
         isAuthenticated: true,
         isLoading: false,
         logLoading: false,
+        account_number:payload.user.account_number,
         account_balance: payload.user.account_balance,
       };
     case LOGOUT_SUCCESS:

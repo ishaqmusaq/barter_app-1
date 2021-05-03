@@ -38,7 +38,80 @@ const slides = [
 ];
 
 function Onboarding({navigation}) {
-  return null;
+  const scroll = useRef (null);
+
+  const onLogin =()=>{
+    navigate('Login')
+  }
+  const onRegister = ()=>{
+    navigate('Register');
+  }
+  return (
+    <Box flex={1} backgroundColor="primary" >
+      <Box height={height * 0.65}>
+        <Box flexDirection='row' justifyContent="center"
+          alignItems="center"
+          paddingTop="m">
+          <Butterfly width={40} height={40} />
+          <Text variant="title1" color="black"
+            fontSize={30}
+            fontWeight="bold"
+            textDecorationStyle="solid"
+            style={{ marginLeft: 3 }}>
+            HandInHand
+          </Text>
+        </Box>
+        <Animated.ScrolView ref={scroll}
+          horizontal
+          snapToInterval={width}
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+        >
+          {slides.map(( title, body ), index =>(
+            <Fragment key={index}>
+              <Slide {...{title,body}} />
+            </Fragment>
+          ))}
+
+        </Animated.ScrolView>
+      </Box>
+      <Box flex={1} justifyContent="center"
+       alignItems="centnter"
+       paddingVertical="m"
+       >
+        <TouchableOpacity onPress={onRegister}>
+          <Box
+           width={width *0.8 }
+          backgroundColor="barter"
+          paddingVertical="m"
+          borderRadius="m"
+          marginBottom="s"
+          >
+            <Text textAlign="center"
+            variant="title"
+            fontSize={18}
+            >Create an account</Text>
+          </Box>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={onLogin}>
+          <Box width={width *0.8 }
+          backgroundColor="primaryLight"
+          paddingVertical="m"
+          borderRadius="m"
+          marginBottom="s"
+          >
+            <Text textAlign="center"
+            variant="title1"
+            color="barter"
+            fontSize={18}
+            >Login</Text>
+          </Box>
+        </TouchableOpacity>
+
+      </Box>
+    </Box>
+  );
 }
 
 export default Onboarding;
